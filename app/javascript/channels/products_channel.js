@@ -1,6 +1,6 @@
-import consumer from "./consumer"
+import consumer from './consumer';
 
-consumer.subscriptions.create("ProductsChannel", {
+consumer.subscriptions.create('ProductsChannel', {
   connected() {
     // Called when the subscription is ready for use on the server
   },
@@ -10,6 +10,9 @@ consumer.subscriptions.create("ProductsChannel", {
   },
 
   received(data) {
-    // Called when there's incoming data on the websocket for this channel
-  }
+    const storeElement = document.querySelector('main.store');
+    if (storeElement) {
+      storeElement.innerHTML = data.html;
+    }
+  },
 });
